@@ -133,9 +133,51 @@ const avgTagPerUser2 = [
 	},
 ];
 
-//! Q.
-//! Q.
-//! Q.
+//! Q.8.	How many users have 'enim' as one of their tags
+
+const usersWithEnimTags = [
+	{
+		$match: {
+			//match operators also matches with the element of an array of the fields
+			tags: "enim",
+		},
+	},
+	{
+		$count: "usersWithEnimTags",
+	},
+];
+
+//! Q.9.	What are the names and age of users who are inactive and have 'velit' as a tag?
+
+const reqQuery = [
+	{
+		$match: {
+			isActive: false,
+			tags: "velit",
+		},
+	},
+	{
+		$project: {
+			_id: 0,
+			name: 1,
+			age: 1,
+		},
+	},
+];
+
+//! Q.10.	How many users have a phone number starting with '+1 (940)'?
+
+const usersWithSpecialPhone = [
+	{
+		$match: {
+			"company.phone": /^\+1 \(940\)/, //This is regex (regular expression)
+		},
+	},
+	{
+		$count: "usersWithSpecialPhone",
+	},
+];
+
 //! Q.
 //! Q.
 //! Q.
